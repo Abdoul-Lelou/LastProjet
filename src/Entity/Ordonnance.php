@@ -19,7 +19,7 @@ class Ordonnance
      * @ORM\Column(type="integer")
      * @Groups({"patient"})
      */
-    public $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -28,7 +28,7 @@ class Ordonnance
     private $medicament;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      * @Groups({"patient"})
      */
     private $quantite;
@@ -68,12 +68,12 @@ class Ordonnance
         return $this;
     }
 
-    public function getQuantite(): ?int
+    public function getQuantite(): ?string
     {
         return $this->quantite;
     }
 
-    public function setQuantite(int $quantite): self
+    public function setQuantite(string $quantite): self
     {
         $this->quantite = $quantite;
 

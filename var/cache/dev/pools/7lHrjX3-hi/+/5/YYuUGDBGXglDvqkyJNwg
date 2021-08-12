@@ -1,0 +1,3 @@
+<?php //route_name_7eeb9cc0ef0758b0236e9c9fbf7b3d6b
+
+return [PHP_INT_MAX, 'api_appointements_get_item'];

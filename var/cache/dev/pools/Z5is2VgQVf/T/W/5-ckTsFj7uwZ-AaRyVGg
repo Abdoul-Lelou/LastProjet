@@ -1,0 +1,3 @@
+<?php //route_name_0f9ec7c3b8b00c2844379037de4c879d
+
+return [PHP_INT_MAX, 'api_patient_datas_get_item'];

@@ -55,7 +55,7 @@ class AppFixtures extends Fixture
         $user->setEmail('Fatou@gmail.com');
         $user->setisActive(true);
         $user->setSexe('F');
-        $user->setMatricule($this->generer_matricule());
+        $user->setMatricule('kds'.$this->generer_matricule());
         $user->setRole($role1);
         $manager->persist($user);
         $manager->flush();
@@ -70,7 +70,7 @@ class AppFixtures extends Fixture
         $user->setEmail('Abdoulaye@gmail.com');
         $user->setisActive(true);
         $user->setSexe('M');
-        $user->setMatricule($this->generer_matricule());
+        $user->setMatricule('kds'.$this->generer_matricule());
         $user->setRole($role1);
         $manager->persist($user);
         $manager->flush();
@@ -85,7 +85,7 @@ class AppFixtures extends Fixture
         $user->setEmail('fatou@gmail.com');
         $user->setisActive(true);
         $user->setSexe('F');
-        $user->setMatricule($this->generer_matricule());
+        $user->setMatricule('kds'.$this->generer_matricule());
         $user->setRole($role3);
         $manager->persist($user);
         $manager->flush();
@@ -98,7 +98,7 @@ class AppFixtures extends Fixture
         $user->setEmail('admin@gmail.com');
         $user->setisActive(true);
         $user->setSexe('M');
-        $user->setMatricule($this->generer_matricule());
+        $user->setMatricule('kds'.$this->generer_matricule());
         $user->setRole($role2);
         $manager->persist($user);
         $manager->flush();

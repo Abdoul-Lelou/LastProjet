@@ -81,10 +81,24 @@ class SecurityController extends AbstractController
     /**
      * @Route("/profil", methods={"POST"})
      */
-    public function addProfile(Request $request, EntityManagerInterface $entityManager)
+    public function addProfile(Request $request, EntityManagerInterface $entityManager, ProfilRepository $profilRepository)
     {
-        //AVOIR AU MOINS LE ROLE_ADMIN POUR AFFICHER LES USERS
+        //AVOIR AU MOINS LE ROLE_SECRETAIRE POUR MODIFIER LE PROFIL
         $this->denyAccessUnlessGranted('ROLE_SECRETAIRE', null, 'Accès non autorisé');
+        $user = $this->getUser();
+        $idProfil = $user->getProfil();
+
+        if ($idProfil !== null) {
+            $user->setProfil(null);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $currentProfil = $entityManager->getRepository(Profil::class)->find(intval($idProfil->getId()));
+
+            $entityManager->remove($currentProfil);
+            $entityManager->flush();
+        }
 
         $profil = new Profil();
 

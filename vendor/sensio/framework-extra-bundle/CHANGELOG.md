@@ -1,13 +1,60 @@
 CHANGELOG
 =========
 
+6.1
+---
+
+ * Add support for PHP 8 attributes
+
+6.0
+---
+
+ * Remove PSR-7 support
+
+5.6
+---
+
+ * Bump min dependency versions
+
+5.2
+---
+
+ * Deprecated routing annotations as this is included in symfony/framework-bundle.
+   Disable the feature with
+
+   ```
+   sensio_framework_extra:
+       router:
+           annotations: false
+   ```
+
+   Also replace the annotations `Sensio\Bundle\FrameworkExtraBundle\Configuration\Route`
+   and `Sensio\Bundle\FrameworkExtraBundle\Configuration\Method` with `Symfony\Component\Routing\Annotation\Route`
+
+5.1
+---
+
+ * Added autoconfigure for `ParamConverterInterface` (#516).
+
+ * Renamed service ids back to traditional service ids instead
+   of class names (#530).
+
+5.0
+---
+
+ * Changed the `@Security` annotation to use arguments from argument
+   resolvers as expression variables.
+
+ * The `@IsGranted` annotation now also supports using arguments from the
+   argument resolvers as the subject.
+
 4.0
 ---
 
  * added @IsGranted() annotation
  * allowed to disable some converters
  * allowed to customize the @security message and status code
- * changed template name generation from camelCase to under_score
+ * [BC BREAK] changed template name generation from camelCase to under_score for both files and directories
  * removed support for bundle inheritance
  * a RuntimeException is now thrown when a reserved variable is used in a security expression
  * added cache-control max-stale support

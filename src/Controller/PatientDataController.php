@@ -232,7 +232,7 @@ class PatientDataController extends AbstractController
             $entityManager->persist($ordonnance);
             $entityManager->flush();
 
-            $ordonnanceId = $entityManager->getRepository(Ordonnance::class)->find($ordonnance->id);
+            $ordonnanceId = $entityManager->getRepository(Ordonnance::class)->find($ordonnance->getId());
             $patientData->setSymptome($values->symptome);
             $patientData->setTaille($values->taille);
             $patientData->setPoids($values->poids);

@@ -12,6 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
+// //use 'Vendor\autoload.php;
+// use Symfony\Component\HttpClient;
+//  use  '/vendor/autoload.php';
+// use Twilio\Rest\Client;
+// use __DIR__ '/vendor/autoload.php';
+
 
 /**
  * @Route("/api")
@@ -85,6 +92,45 @@ class AppointementController extends AbstractController
                 $entityManager->persist($appointement);
                 $entityManager->flush();
 
+                // $id = 'AC6c91208078397e7639ab2e39238f6cb3';
+                // $token = '952f3c4d4f287dc8ac2b5a376fbdbae1';
+                // $phone = '00221778719986';
+
+                // $client = new Twilio\Rest\Client($id, $token);
+                // $message = $client->message->create(
+                //     $tele, [
+                //         'from' => '+15803076220',
+                //         'body' => 'vous avez un rendez-vous',
+                //     ]
+                //     );
+                // if ($message->sid) {
+                //     return 'voilas';
+                // }
+
+                
+                    // $user = $this->getUser();
+                    // $authy_api = new \Authy\AuthyApi( getenv('TWILIO_AUTHY_API_KEY') );
+                    // $user      = $authy_api->registerUser( 'abdourahmane.benzy@gmail.com', $phone, '+221' );
+
+                    // dd($user);die;
+              
+                    // if ( $user->ok() ) {
+              
+                    //     $sms = $authy_api->requestSms( $user->id(), [ "force" => "true" ] );
+              
+                       
+              
+                    //     $user_params = [
+                    //         'email' => $email,
+                    //         'countryCode' => '+221',
+                    //         'phone' => $phone,
+                    //         'authy_id' => $id,
+                    //     ];
+                    //     return $this->json("ok ca marche",201,[])
+                    //   //  $this->get('session')->set('user', $user_params);
+                    // }
+               
+
                 return $this->json($appointement, 201, [], ['groups' => 'patient']);
             } catch (NotEncodableValueException $e) {
                 return $this->json([
@@ -142,7 +188,7 @@ class AppointementController extends AbstractController
                 $medecin = $entityManager->getRepository(User::class)->find(intval($medecin_id));
 
                 foreach ($appointementRepository->findAll() as  $value) {
-                    if ($values->date == $value->date && $medecin == $value->medecin && $values->heureDebut == $value->heureDebut && $value->isEnabled == true && $appointement->id != $value->id) {
+                    if ($values->date == $value->date && $medecin == $value->medecin && $values->heureDebut == $value->heureDebut && $value->isEnabled && $appointement->getId() != $value->getId()) {
                         return $this->json(['status' => '400', 'message' => 'Rendez-vous déjà réservé']);
                     }
                 }
@@ -183,14 +229,19 @@ class AppointementController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_SECRETAIRE', null, 'Accès non autorisé');
 
         $appointement = $appointementRepository->find($id);
-
+        // $date = new \DateTime();
+        // var_dump($date->getFullYear());die;
+        // $today = $date.getFullYear().'/'.$date.getMonth().'/'.$date.getDay();
         if ($appointement !== null) {
             try {
                 if ($appointement->getIsEnabled() === false) {
                     foreach ($appointementRepository->findAll() as $value) {
-                        if ($appointement->id != $value->id && $appointement->heureDebut == $value->heureDebut && str_replace('-', '/', $appointement->date) == str_replace('-', '/', $value->date) && $appointement->medecin == $value->medecin && $value->isEnabled == true) {
+                        if ($appointement->getId() != $value->getId() && $appointement->heureDebut == $value->heureDebut && str_replace('-', '/', $appointement->date) == str_replace('-', '/', $value->date) && $appointement->medecin == $value->medecin && $value->isEnabled ) {
                             return $this->json(['status' => 200, 'message' => 'rendez-vous déjà réservé']);
                         }
+                        // elseif ($appointement->getId() != $value->getId()  && str_replace('-', '/', $appointement->date) == $today  && $value->isEnabled ) {
+                        //     return $this->json(['status' => 200, 'message' => 'rendez-vous déjà expiré']);
+                        // }
                     }
 
                     $appointement->setIsEnabled(true);

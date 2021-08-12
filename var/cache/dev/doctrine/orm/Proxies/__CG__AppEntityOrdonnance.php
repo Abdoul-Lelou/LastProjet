@@ -66,10 +66,10 @@ class Ordonnance extends \App\Entity\Ordonnance implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'medicament', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'quantite', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'dosage', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'numero', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'patientData'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'medicament', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'quantite', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'dosage', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'numero', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'patientData'];
         }
 
-        return ['__isInitialized__', 'id', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'medicament', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'quantite', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'dosage', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'numero', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'patientData'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'medicament', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'quantite', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'dosage', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'numero', '' . "\0" . 'App\\Entity\\Ordonnance' . "\0" . 'patientData'];
     }
 
     /**
@@ -216,7 +216,7 @@ class Ordonnance extends \App\Entity\Ordonnance implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function getQuantite(): ?int
+    public function getQuantite(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQuantite', []);
@@ -227,7 +227,7 @@ class Ordonnance extends \App\Entity\Ordonnance implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function setQuantite(int $quantite): \App\Entity\Ordonnance
+    public function setQuantite(string $quantite): \App\Entity\Ordonnance
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setQuantite', [$quantite]);
